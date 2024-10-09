@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import TopPage from './components/TopPage';
+import Login from './components/Login';
+import NewReport from './components/NewReport';
+import SignUp from './components/Register'; // アカウント作成画面のインポート
+import CalendarPage from './components/CalendarPage';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<TopPage/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/new-report/:date" element={<NewReport/>} />
+        <Route path="/calendar" element={<CalendarPage/>} />
+        
+        {/* 初回アクセス時にアカウント作成画面にリダイレクト */}
+        <Route path="/" element={<Navigate to="/signup" replace />} />
+
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Register: React.FC = () => {
+const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/register', {
-          username,
-          password,
+      const response = await axios.post('http://localhost:5000/login', {
+        username,
+        password,
       });
-      alert('アカウント作成成功');
-    } catch (error: any) {
-      // エラーがあった場合、詳細を表示
-      console.log(username);
-      console.log(password);
-      if (error.response) {
-        alert(`アカウント作成に失敗しました: ${error.response.data.error}`);
-      } else {
-        alert('アカウント作成に失敗しました。');
-      }
+      setMessage('ログイン成功');
+      // トークンをローカルストレージに保存
+      localStorage.setItem('token', response.data.token);
+    } catch (error) {
+      setMessage('ログインに失敗しました');
     }
   };
 
   return (
     <div>
-      <h2>アカウント作成</h2>
+      <h2>ログイン</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -44,10 +40,11 @@ const Register: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">登録</button>
+        <button type="submit">ログイン</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default Register;
+export default Login;

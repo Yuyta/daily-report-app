@@ -1,0 +1,70 @@
+/* レポートフォーム全体のコンテナ */
+.report-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* フォーム内の要素を整列 */
+  .report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 入力フィールド間のスペース */
+  }
+  
+  /* ラベルと入力欄のラップ */
+  .form-group {
+    display: flex;
+    align-items: center; /* ラベルと入力欄を垂直方向に中央揃え */
+    gap: 10px; /* ラベルと入力欄の間のスペース */
+  }
+  
+  /* ラベルのスタイル */
+  label {
+    flex-basis: 30%; /* ラベルの横幅を統一 */
+    text-align: center; /* ラベルを中央に配置 */
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 入力欄のスタイリング (input, select, textareaすべてに適用) */
+  input, select, textarea {
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%; /* 横幅を揃える */
+  }
+
+  /* テキストエリアのスタイリング */
+  textarea {
+    height: 150px;
+    resize: vertical; /* ユーザーが高さを調整可能 */
+  }
+  /* ボタンコンテナを中央に配置 */
+ .button-container {
+    display: flex;
+    justify-content: center; /* 横方向中央揃え */
+  }
+  
+  /* ボタンのスタイリング */
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* ボタンのホバースタイル */
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
