@@ -115,11 +115,13 @@ const NewReport = () => {
         </div>
         <div className="button-container">
         <button type="submit" className="submit-button">日報を登録</button>
+        <button className="temp-save-button">一時保存</button>
+        <button onClick={() => navigate('/top')} className="return-button">戻る</button>
         </div>
         
       </form>
     </div>
   );
-};
+};//日報の一時保存ボタンと戻るボタン欲しい、登録は終業時に本登録として使う(全て入力欄が埋まった時のみ押せるようにする？)
 
 export default NewReport;

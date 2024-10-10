@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Register.css';
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -44,7 +45,7 @@ const Register: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">登録</button>
+        <button type="submit" className="signup-button">登録</button>
       </form>
     </div>
   );

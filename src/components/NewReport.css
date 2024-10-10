@@ -55,6 +55,7 @@
   /* ボタンのスタイリング */
   .submit-button {
     padding: 10px 50px;
+    margin: 10px 20px;
     font-size: 16px;
     color: #fff;
     background-color: #007bff;
@@ -66,6 +67,42 @@
   
   /* ボタンのホバースタイル */
   .submit-button:hover {
+    background-color: #0056b3;
+  }
+
+    /* ボタンのスタイリング */
+    .temp-save-button {
+      padding: 10px 50px;
+      margin: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    /* ボタンのホバースタイル */
+    .temp-save-button:hover {
+      background-color: #0056b3;
+    }
+
+      /* ボタンのスタイリング */
+  .return-button {
+    padding: 10px 50px;
+    margin: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* ボタンのホバースタイル */
+  .return-button:hover {
     background-color: #0056b3;
   }
   

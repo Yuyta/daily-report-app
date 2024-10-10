@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './TopPage.css';
 
 const TopPage: React.FC = () => {
     const navigate = useNavigate();
@@ -19,10 +20,10 @@ const TopPage: React.FC = () => {
     <div>
       <h1>トップページ</h1>
       <div style={{ marginBottom: '20px' }}>
-        <button onClick={handleCreateNewReport}>新規日報作成</button>
+        <button onClick={handleCreateNewReport} className = "new-report-button">新規日報作成</button>
       </div>
       <div>
-        <button onClick={handleViewCalendar}>カレンダーを見る</button>
+        <button onClick={handleViewCalendar} className = "calender-button">カレンダーを見る</button>
       </div>
     </div>
   );

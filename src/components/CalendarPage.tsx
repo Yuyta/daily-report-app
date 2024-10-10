@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar'; // Reactのカレンダーコンポーネント
 import 'react-calendar/dist/Calendar.css';
+import './CalendarPage.css'
 
 const CalendarPage: React.FC = () => {
   const [reports, setReports] = useState<any>({});
@@ -36,7 +37,7 @@ const CalendarPage: React.FC = () => {
       <Calendar
         onClickDay={handleDateClick}
       />
-      <button onClick={() => navigate('/')}>戻る</button>
+      <button onClick={() => navigate('/top')} className="return-button">戻る</button>
     </div>
   );
 };

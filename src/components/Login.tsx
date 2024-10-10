@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Login.css';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -40,7 +41,7 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">ログイン</button>
+        <button type="submit" className="login-button">ログイン</button>
       </form>
       {message && <p>{message}</p>}
     </div>
