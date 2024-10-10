@@ -1,8 +1,7 @@
 /* レポートフォーム全体のコンテナ */
 .report-container {
-    max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 60px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -10,6 +9,7 @@
   
   /* フォーム内の要素を整列 */
   .report-form {
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     gap: 20px; /* 入力フィールド間のスペース */
@@ -18,13 +18,14 @@
   /* ラベルと入力欄のラップ */
   .form-group {
     display: flex;
+    text-align: center;
     align-items: center; /* ラベルと入力欄を垂直方向に中央揃え */
     gap: 10px; /* ラベルと入力欄の間のスペース */
   }
   
   /* ラベルのスタイル */
   label {
-    flex-basis: 30%; /* ラベルの横幅を統一 */
+    flex-basis: 40%; /* ラベルの横幅を統一 */
     text-align: center; /* ラベルを中央に配置 */
     font-weight: bold;
     color: #333;
@@ -53,7 +54,7 @@
   
   /* ボタンのスタイリング */
   .submit-button {
-    padding: 10px 20px;
+    padding: 10px 50px;
     font-size: 16px;
     color: #fff;
     background-color: #007bff;
