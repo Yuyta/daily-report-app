@@ -15,10 +15,10 @@ exports.registerUser = async (req, res) => {
       return res.status(400).json({ error: 'ユーザーが既に存在します' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    //const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
-      password: hashedPassword,
+      password,
     });
 
     await newUser.save();
@@ -33,15 +33,20 @@ exports.registerUser = async (req, res) => {
 // ログインの処理
 exports.login = async (req, res) => {
   const { username, password } = req.body;
-  
+
   try {
+    //ユーザーを確認
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ error: 'ユーザーが見つかりません' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    //console.log(password);
+    //console.log(user.password);
+    //パスワードが一致するか
+    //const isMatch = await bcrypt.compare(password, user.password);
+    //console.log('Password match:', isMatch);
+    if (password !== user.password) {
       return res.status(400).json({ error: 'パスワードが正しくありません' });
     }
 

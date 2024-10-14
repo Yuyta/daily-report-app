@@ -1,3 +1,12 @@
+  /* 要素を整列 */
+  .signup-form {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    gap: 10px; /* 入力フィールド間のスペース */
+  }
+  
   /* ボタンのスタイリング */
   .signup-button  {
     padding: 10px 50px;

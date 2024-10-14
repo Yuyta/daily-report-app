@@ -1,3 +1,12 @@
+  /* 要素を整列 */
+  .login-form {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    gap: 10px; /* 入力フィールド間のスペース */
+  }
+  
   /* ボタンのスタイリング */
   .login-button  {
     padding: 10px 50px;
@@ -12,4 +21,13 @@
   /* ボタンのホバースタイル */
   .login-button:hover  {
     background-color: #0056b3;
+  }
+
+  .to-signup-page {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    gap: 10px; /* 入力フィールド間のスペース */
+    text-align:center;
   }

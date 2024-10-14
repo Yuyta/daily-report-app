@@ -32,9 +32,9 @@ const CalendarPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='calendar-page'>
       <h1>カレンダーページ</h1>
-      <Calendar
+      <Calendar className='calendar'
         onClickDay={handleDateClick}
       />
       <button onClick={() => navigate('/top')} className="return-button">戻る</button>
