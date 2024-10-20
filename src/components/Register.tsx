@@ -51,7 +51,7 @@ const Register: React.FC = () => {
         <button type="submit" className="signup-button">登録</button>
       </form>
       <div className="to-login-page">
-        <a href='/'>アカウント作成がお済の方はこちら</a>
+        <a href='/login'>アカウント作成がお済の方はこちら</a>
       </div>
     </div>
   );

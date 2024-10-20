@@ -20,6 +20,7 @@ const NewReport = () => {
     e.preventDefault(); // デフォルトのフォーム動作をキャンセル
     setError(''); // エラーメッセージをクリア
 
+    //全項目が入力されているかをチェック
     if (!workingHours || !plan || !accomplishment || !futurePlan) {
       setError('すべてのフィールドを記入してください。');
       return;
@@ -45,6 +46,31 @@ const NewReport = () => {
     } catch (err) {
       console.error('日報作成中にエラーが発生しました:', err);
       setError('日報の作成に失敗しました。再度お試しください。');
+    }
+  };
+
+  //一時保存ボタンの処理
+  const tempSaveReport = async () => {
+    const reportData = {
+      workingHours,
+      workStatus,
+      plan,
+      accomplishment,
+      futurePlan,
+    };
+
+    try{
+      const res = await axios.post('/reports/temp-save', reportData, {
+        headers:{
+          'x-auth-token': token, //認証トークンをヘッダーに含める
+        },
+      });
+
+      console.log('日報が一時保存されました:', res.data);
+      navigate('/calendar'); //一時保存後にカレンダーページにリダイレクト
+    } catch (err) {
+      console.error('日報の一時保存中にエラーが発生しました:', err);
+      setError('日報の一時保存に失敗しました。再度お試しください。');
     }
   };
 
@@ -115,7 +141,7 @@ const NewReport = () => {
         </div>
         <div className="button-container">
         <button type="submit" className="submit-button">日報を登録</button>
-        <button className="temp-save-button">一時保存</button>
+        <button type="button" onClick={tempSaveReport} className="temp-save-button">一時保存</button>
         <button onClick={() => navigate('/top')} className="return-button">戻る</button>
         </div>
         
