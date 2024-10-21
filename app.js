@@ -3,13 +3,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const reportRoutes = require('./routes/reportRoutes'); // ルートのインポート
 console.log(process.env.MONGODB_URI); // ここでURIを確認
 const app = express();
+const PORT = 5000;
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors()); //corsの有効化
 
 // JSONデータをパースするためのミドルウェア
-app.use(express.json());
+app.use(express.json());// JSONのパース
 
 // MongoDB接続
 mongoose.connect(process.env.MONGODB_URI, {
@@ -20,8 +22,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // ルーティング
 //app.use('/api', authRoutes);
-// ルート設定...
-app.use('/api', require('./routes/authRoutes'));
-app.listen(5000, () => {
-  console.log('Server is running on http://localhost:5000');
+// Routes
+app.use('/reports', reportRoutes); // reports用のルート
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

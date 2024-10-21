@@ -10,6 +10,7 @@ const NewReport = () => {
   const [accomplishment, setAccomplishment] = useState('');
   const [futurePlan, setFuturePlan] = useState('');
   const [error, setError] = useState('');
+  const [copySuccess, setCopySuccess] = useState('');
 
   const navigate = useNavigate();
 
@@ -19,6 +20,9 @@ const NewReport = () => {
   const submitReport = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // デフォルトのフォーム動作をキャンセル
     setError(''); // エラーメッセージをクリア
+
+    const token = localStorage.getItem('token'); // トークンからユーザー情報を取得
+    const user = 'yuta'; // ユーザー名やIDをここで設定（トークンからデコードして取得することが理想）
 
     //全項目が入力されているかをチェック
     if (!workingHours || !plan || !accomplishment || !futurePlan) {
@@ -32,10 +36,11 @@ const NewReport = () => {
       plan,
       accomplishment,
       futurePlan,
+      //user,  // ユーザーデータを含める
     };
 
     try {
-      const res = await axios.post('/reports/new', reportData, {
+      const res = await axios.post('http://localhost:5000/reports/new', reportData, {
         headers: {
           'x-auth-token': token, // 認証トークンをヘッダーに含める
         },
@@ -72,6 +77,34 @@ const NewReport = () => {
       console.error('日報の一時保存中にエラーが発生しました:', err);
       setError('日報の一時保存に失敗しました。再度お試しください。');
     }
+  };
+
+  //コピー機能
+  const copyToClipboard = () => {
+
+    const formattedReport = `
+---------------------------------------
+勤務時間\t${workingHours}
+---------------------------------------
+勤務状況\t${workStatus}
+---------------------------------------
+今日の予定\n${plan}
+---------------------------------------
+今日の実績\n${accomplishment}
+---------------------------------------
+今後の計画\n${futurePlan}
+---------------------------------------
+    `;
+
+
+    navigator.clipboard.writeText(formattedReport)
+      .then(() => {
+        setCopySuccess('日報がクリップボードにコピーされました！');
+     })
+      .catch(err => {
+        console.error('クリップボードへのコピーに失敗しました：', err);
+        setCopySuccess('クリップボードへのコピーに失敗しました。');
+     });
   };
 
   return (
@@ -142,6 +175,7 @@ const NewReport = () => {
         <div className="button-container">
         <button type="submit" className="submit-button">日報を登録</button>
         <button type="button" onClick={tempSaveReport} className="temp-save-button">一時保存</button>
+        <button onClick={copyToClipboard} type="button" className='copy-button'>日報をコピー</button>
         <button onClick={() => navigate('/top')} className="return-button">戻る</button>
         </div>
         

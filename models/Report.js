@@ -4,7 +4,7 @@ const ReportSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // ユーザーモデルと関連付け
-    required: true,
+    required: false,
   },
   date: {
     type: Date,
