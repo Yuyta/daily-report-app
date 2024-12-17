@@ -1,3 +1,4 @@
 users.csv
 reports/yuta_daily_report.csv
 reports/daily_report.csv
+flask_app/** 
