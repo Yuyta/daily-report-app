@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サインアップ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="signup-login-container">
+        <h2>新規登録</h2>
+        <form method="post">
+            <div class="form-group">
+                <label>ユーザー名</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>パスワード</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">サインアップ</button>
+            </div>
+        </form>
+        <p>すでに登録済みですか？<a href="{{ url_for('login') }}">ログイン</a></p>
+    </div>
+</body>
+</html>

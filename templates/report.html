@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作成</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('logout') }}" class="logout">ログアウト</a>
+            <h1>作成</h1>
+            <nav>
+                <a href="{{ url_for('report', date=prev_date) }}" class="nav-link" onclick="saveAndNavigate(event, '{{ url_for('report', date=prev_date) }}')">前日</a>
+                <span class="current-date">{{ date }}</span>
+                <a href="{{ url_for('report', date=next_date) }}" class="nav-link" onclick="saveAndNavigate(event, '{{ url_for('report', date=next_date) }}')">翌日</a>
+            </nav>
+        </header>
+
+        <form id="reportForm">
+            <div class="form-group">
+                <label>勤務時間</label>
+                <input type="text" name="work_time" placeholder="例: 8:00-17:00" required 
+                       value="{{ report_data['勤務時間'] if report_data else '' }}">
+            </div>
+
+            <div class="form-group">
+                <label>本日の勤務形態</label>
+                <select name="work_type_today">
+                    <option value="出社" {% if report_data and report_data['勤務形態'] == '出社' %}selected{% endif %}>出社</option>
+                    <option value="在宅" {% if report_data and report_data['勤務形態'] == '在宅' %}selected{% endif %}>在宅</option>
+                    <option value="出張" {% if report_data and report_data['勤務形態'] == '出張' %}selected{% endif %}>出張</option>
+                    <option value="全休" {% if report_data and report_data['勤務形態'] == '全休' %}selected{% endif %}>全休</option>
+                    <option value="AM休" {% if report_data and report_data['勤務形態'] == 'AM休' %}selected{% endif %}>AM休</option>
+                    <option value="PM休" {% if report_data and report_data['勤務形態'] == 'PM休' %}selected{% endif %}>PM休</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>本日の予定</label>
+                <textarea name="today_schedule" required>{{ report_data['本日の予定'] if report_data else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>本日の実績</label>
+                <textarea name="today_performance" required>{{ report_data['本日の実績'] if report_data else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>翌日の勤務形態</label>
+                <select name="work_type_next">
+                    <option value="出社" {% if report_data and report_data['勤務形態'] == '出社' %}selected{% endif %}>出社</option>
+                    <option value="在宅" {% if report_data and report_data['勤務形態'] == '在宅' %}selected{% endif %}>在宅</option>
+                    <option value="出張" {% if report_data and report_data['勤務形態'] == '出張' %}selected{% endif %}>出張</option>
+                    <option value="全休" {% if report_data and report_data['勤務形態'] == '全休' %}selected{% endif %}>全休</option>
+                    <option value="AM休" {% if report_data and report_data['勤務形態'] == 'AM休' %}selected{% endif %}>AM休</option>
+                    <option value="PM休" {% if report_data and report_data['勤務形態'] == 'PM休' %}selected{% endif %}>PM休</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>翌日の計画</label>
+                <textarea name="next_day_plan" required>{{ report_data['翌日の計画'] if report_data else '' }}</textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" onclick="submitReport()">登録</button>
+                <button type="button" class="btn btn-secondary" onclick="copyReport()">コピー</button>
+            </div>
+        </form>
+
+        <p id="statusMessage"></p>
+        <p id="statusMessage2"></p>
+
+        
+        <div class="calendar-container">
+            <h2>カレンダー</h2>
+            <div class="calendar-header">
+                <!-- 月表示 -->
+                <button onclick="changeMonth(-1)">&#8592;</button>
+                <span id="calendar-title"></span>
+                <button onclick="changeMonth(1)">&#8594;</button>
+            </div>
+            <!-- 曜日表示 -->
+            <div id="calendar-weekdays"></div>
+            <!-- カレンダー表示 -->
+            <div id="calendar"></div>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
