@@ -22,4 +22,4 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest flask_app/
+          pytest flask_app/ --rootdir=flask_app
